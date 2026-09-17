@@ -1,0 +1,31 @@
+ import { apprenants } from './data.js';
+ 
+ export function normaliseNom(nom){
+    return nom.trim().toLowerCase();
+ }
+ export function validerResultat(jour, exercicesTermines, totalExercices,) {
+    if (jour < 1 || jour > 7) {
+        return false;
+    }
+    if (exercicesTermines < 0 || totalExercices < 0){
+        return false ;
+    }
+    if (exercicesTermines > totalExercices){
+        return false ;
+    }
+        return true ;
+}
+ export function ajouterApprenant ( nomComplet , ville){
+    for (let item of apprenants )
+        if ( nomComplet === item.nomComplet )
+            return item ;
+
+    let newStudent = {
+        id : apprenants.length + 1,
+        nomcomplet : nomComplet,
+        resultats : []
+    }
+    apprenants.push(newStudent)
+    return true ;
+}
+  
