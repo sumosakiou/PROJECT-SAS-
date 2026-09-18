@@ -2,8 +2,8 @@
  
  export function normaliseNom(nom){
     return nom.trim().toLowerCase();
- }
- export function validerResultat(jour, exercicesTermines, totalExercices,) {
+ }//******************
+ export function validerResultat(jour, exercicesTermines, totalExercices) {
     if (jour < 1 || jour > 7) {
         return false;
     }
@@ -14,7 +14,8 @@
         return false ;
     }
         return true ;
-}
+}// *******************
+
  export function ajouterApprenant ( nomComplet , ville){
     for (let item of apprenants )
         if ( nomComplet === item.nomComplet )
@@ -27,5 +28,4 @@
     }
     apprenants.push(newStudent)
     return true ;
-}
-  
+}//**********************
