@@ -1,47 +1,160 @@
- import { apprenants } from './data.js';
- 
- export function normaliseNom(nom){
-    return nom.trim().toLowerCase();
- }//----------------------------------------
- export function validerResultat(jour, exercicesTermines, totalExercices, challengeTermine ) {
-    if (jour < 1 || jour > 7) {
-        return false;
-    }
-    if (exercicesTermines < 0 || totalExercices < 0){
-        return false ;
-    }
-    if (exercicesTermines > totalExercices){
-        return false ;
-    }
-    if (challengeTermine !== 1 && challengeTermine !== 0){
-        return false ;
-    }  
-        return true ;
-}//------------------------------------------
+import { apprenants } from "./data.js";
 
- export function ajouterApprenant ( nomComplet , ville){
-    for (let item of apprenants )
-        if ( nomComplet === item.nomComplet )
-            return false ;
+export function normaliserNom(nom) {
+  return String(nom).trim().toLowerCase();
+}
 
-    let newStudent = {
-        id : apprenants.length + 1,
-        nomcomplet : nomComplet,
-        resultats : []
+export function validerResultat(jour,exercicesTermines, totalExercices, challengeTermine,) {
+  if (jour < 1 || jour > 7) {
+    return false;
+  }
+  if (exercicesTermines < 0 || totalExercices < 0) {
+    return false;
+  }
+  if (exercicesTermines > totalExercices) {
+    return false;
+  }
+  if (totalExercices > 20) {
+    return false;
+  }
+  if (challengeTermine !== 1 && challengeTermine !== 0) {
+    return false;
+  }
+  return true;
+}
+
+export function ajouterApprenant(nomComplet, ville) {
+  for (let item of apprenants) {
+    if (normaliserNom(nomComplet) === normaliserNom(item.nomComplet)) {
+      console.log("Apprenant is already existed");
+      return false;
     }
-    apprenants.push(newStudent)
-    return true ;
-}//----------------------------------------
-export function rechercherapprenanant(critere){
-    for (let apprenant of apprenants ){
-        if (typeof critere === 'string'){
-            if (normaliseNom(apprenants.nomComplet).includes(normaliseNom(critere))){
-                return apprenant;
-            }
-        
-        } else if (critere === apprenant.id){
-           return apprenant;
-        }
-   }
-   return null;
+  }
+  let obj = {
+    id: apprenants.length + 1,
+    nomComplet: nomComplet,
+    ville: ville,
+    resultats: [],
+  };
+  apprenants.push(obj);
+  console.log("Added successfully");
+  return true;
+}
+
+export function rechercherApprenant(critere) {
+  for (let item of apprenants) {
+    if (typeof critere === "string") {
+      if (normaliserNom(item.nomComplet).includes(normaliserNom(critere))) {
+        return item;
+      }
+    } else {
+      if (critere === item.id) {
+        return item;
+      }
+    }
+  }
+  console.log("Apprenant non trouvé");
+  return null;
+}
+
+export function calculerProgression(id) {
+  let cible = rechercherApprenant(id);
+  if (cible === null) {
+    console.log("Apprenant n'exist pas exister");
+    return 0;
+  }
+  if (cible.resultats.length === 0) {
+    return 0;
+  }
+  let totalTerminer = 0;
+  let totalProposer = 0;
+
+  for (let item of cible.resultats) {
+    totalProposer += item.totalExercices;
+    totalTerminer += item.exercicesTermines;
+  }
+
+  return Math.round((totalTerminer / totalProposer) * 100);
+}
+
+export function enregistrerResultat(id,jour,exercicesTermines,totalExercices,challengeTermine,) {
+  let cible = rechercherApprenant(id);
+  if (cible === null) {
+    return false;
+  }
+
+  let estValider = validerResultat(jour,exercicesTermines,totalExercices,challengeTermine,);
+  if (estValider === false) {
+    return false;
+  }
+
+  let newResults = {
+    jour: jour,
+    exercicesTermines: exercicesTermines,
+    totalExercices: totalExercices,
+    challengeTermine: challengeTermine === 1,
+  };
+
+  cible.resultats.push(newResults);
+  console.log("Résultat enregistré avec succès !");
+  return true;
+}
+
+export function afficherApprenants() {
+  console.log("\n=== LISTE DE TOUS LES APPRENANTS ===");
+
+  for (let item of apprenants) {
+    let progress = calculerProgression(item.id);
+    console.log(
+      `ID: ${item.id} | Name: ${item.nomComplet} | Ville: ${item.ville} | Progress: ${progress}%`,
+    );
+  }
+  console.log("====================================");
+  return true;
+}
+
+export function filtrerParNiveau(nivo) {
+  let etudiantsfiltres = [];
+
+  for (let item of apprenants) {
+    let score = calculerProgression(item.id);
+    if (score >= nivo) {
+      etudiantsfiltres.push(item);
+    }
+  }
+  return etudiantsfiltres;
+}
+
+export function trierParProgression() {
+  let copie = [...apprenants];
+  for (let i = 0; i < copie.length; i++) {
+    for (let j = i + 1; j < copie.length; j++) {
+      let scoreA = calculerProgression(copie[i].id);
+      let scoreB = calculerProgression(copie[j].id);
+
+      if (scoreA < scoreB) {
+        let temp = copie[i];
+        copie[i] = copie[j];
+        copie[j] = temp;
+      }
+    }
+  }
+  return copie;
+}
+
+export function trierParOrdreAlphabetique() {
+  let copie = [...apprenants];
+  for (let i = 0; i < copie.length; i++) {
+    for (let j = i + 1; j < copie.length; j++) {
+      let nomA = copie[i].nomComplet.toLowerCase();
+      let nomB = copie[j].nomComplet.toLowerCase();
+
+      if (nomA > nomB) {
+        let temp = copie[i];
+        copie[i] = copie[j];
+        copie[j] = temp;
+      }
+    }
+  }
+  return copie;
 }
