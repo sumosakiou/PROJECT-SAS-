@@ -5,9 +5,6 @@ import {
   calculerProgression,
   enregistrerResultat,
   afficherApprenants,
-  filtrerParNiveau,
-  trierParProgression,
-  trierParOrdreAlphabetique,
 } from "./functions.js";
 
 const prompt = promptSync();
@@ -17,6 +14,8 @@ console.log("\n=== GESTION DES APPRENANTS ===");
   console.log("2. Rechercher un apprenant");
   console.log("3. Calculer la progression");
   console.log("4. Enregistrer un résultat");
+  console.log("5. Afficher Les Apprenants");
+  console.log("6. Filtrer Les Apprenant Par Niveau");
   console.log("0. Quitter");
   console.log("==============================");
 
@@ -24,7 +23,7 @@ let applicationActive = true;
 
 while (applicationActive) {
   
-  let choix = prompt("Veuillez choisir une option (0-4) : ");
+  let choix = prompt("Veuillez choisir une option (0-6) : ");
 
   switch (choix) {
     case "1":
