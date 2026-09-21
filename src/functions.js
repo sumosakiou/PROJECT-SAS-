@@ -109,6 +109,6 @@ export function afficherApprenants() {
       `ID: ${item.id} | Name: ${item.nomComplet} | Ville: ${item.ville} | Progress: ${progress}%`,
     );
   }
-  console.log("====================================");
+  console.log("======================================");
   return true;
 }

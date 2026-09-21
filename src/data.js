@@ -55,8 +55,8 @@ export let apprenants = [
         nomComplet: "Zinab boud",
         ville: "Nador",
         resultats: [
-            { jour: 2, exercicesTermines: 18, totalExercices: 20, challengeTermine: true },
-            { jour: 3, exercicesTermines: 18, totalExercices: 20, challengeTermine: true }
+            { jour: 1, exercicesTermines: 18, totalExercices: 20, challengeTermine: true },
+            { jour: 2, exercicesTermines: 18, totalExercices: 20, challengeTermine: true }
         ]
     },
     {
@@ -64,7 +64,7 @@ export let apprenants = [
         nomComplet: "Yousaf bokil",
         ville: "Oujda",
         resultats: [
-            { jour: 3, exercicesTermines: 13, totalExercices: 20, challengeTermine: false }
+            { jour: 1, exercicesTermines: 13, totalExercices: 20, challengeTermine: false }
         ]
     },
     {
@@ -72,8 +72,7 @@ export let apprenants = [
         nomComplet: "Anas aboul",
         ville: "taourirat",
         resultats: [
-            { jour: 5, exercicesTermines: 19, totalExercices: 20, challengeTermine: true },
-            { jour: 6, exercicesTermines: 12, totalExercices: 20, challengeTermine: false }
+            { jour: 1, exercicesTermines: 19, totalExercices: 20, challengeTermine: true },
         ]
     },
     {
