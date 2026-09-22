@@ -18,7 +18,7 @@ export let apprenants = [
     },
     {
         id: 3,
-        nomComplet: "salim saki",
+        nomComplet: "salim sakiou ",
         ville: "taourirat",
         resultats: [
             { jour: 1, exercicesTermines: 18, totalExercices: 20, challengeTermine: true },
@@ -44,7 +44,7 @@ export let apprenants = [
     },
     {
         id: 6,
-        nomComplet: "Aymane fadil",
+        nomComplet: "Aymane fadili",
         ville: "Oujda",
         resultats: [
             { jour: 1, exercicesTermines: 11, totalExercices: 20, challengeTermine: false }
@@ -52,7 +52,7 @@ export let apprenants = [
     },
     {
         id: 7,
-        nomComplet: "Zinab boud",
+        nomComplet: "Zinab toji",
         ville: "Nador",
         resultats: [
             { jour: 1, exercicesTermines: 18, totalExercices: 20, challengeTermine: true },
@@ -69,7 +69,7 @@ export let apprenants = [
     },
     {
         id: 9,
-        nomComplet: "Anas aboul",
+        nomComplet: "Anas amine",
         ville: "taourirat",
         resultats: [
             { jour: 1, exercicesTermines: 19, totalExercices: 20, challengeTermine: true },
@@ -77,7 +77,7 @@ export let apprenants = [
     },
     {
         id: 10,
-        nomComplet: "Younas abde",
+        nomComplet: "Younas sk",
         ville: "",
         resultats: [
             { jour: 1, exercicesTermines: 12, totalExercices: 20, challengeTermine: false }

@@ -99,7 +99,6 @@ export function enregistrerResultat(id,jour,exercicesTermines,totalExercices,cha
   console.log("Résultat enregistré avec succès !");
   return true;
 }
-
 export function afficherApprenants() {
   console.log("\n=== LISTE DE TOUS LES APPRENANTS ===");
 
@@ -109,6 +108,6 @@ export function afficherApprenants() {
       `ID: ${item.id} | Name: ${item.nomComplet} | Ville: ${item.ville} | Progress: ${progress}%`,
     );
   }
-  console.log("======================================");
+  console.log("=======================================");
   return true;
 }

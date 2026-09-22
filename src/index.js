@@ -10,12 +10,12 @@ import {
 const prompt = promptSync();
 
 console.log("\n=== GESTION DES APPRENANTS ===");
-  console.log("1. Ajouter un apprenant");
-  console.log("2. Rechercher un apprenant");
-  console.log("3. Calculer la progression");
-  console.log("4. Enregistrer un résultat");
-  console.log("5. Afficher Les Apprenants");
-  console.log("6. Filtrer Les Apprenant Par Niveau");
+  console.log("1. normaliserNom ");
+  console.log("2. validerResultat");
+  console.log("3. ajouterApprenant");
+  console.log("4. enregistrerResultat");
+  console.log("5. calculerProgression");
+  console.log("6. filtrerParNiveau");
   console.log("0. Quitter");
   console.log("==============================");
 
@@ -30,6 +30,7 @@ while (applicationActive) {
       console.log("\n--- Ajout d'un apprenant ---");
       let nomSaisi = prompt("Entrez le nom complet : ");
       let villeSaisie = prompt("Entrez la ville : ");
+
       ajouterApprenant(nomSaisi, villeSaisie);
       break;
     case "2":
@@ -71,17 +72,24 @@ while (applicationActive) {
         prompt("Challenge terminer ? saisi 1 (yes), ou 0 (no): "),
       );
 
-      enregistrerResultat(
-        idResultat,
-        jour,
-        exercicesTermines,
-        totalExercices,
-        challengeTermine,
-      );
+      enregistrerResultat(idResultat,jour,exercicesTermines, totalExercices, challengeTermine,);
       break;
     case "5":
       console.log("\n--- Afficher Les Apprenants ---");
       afficherApprenants()
+
+      break;
+    case "6":
+      console.log("\n--- Filtrer Les Etudiants ---");
+      let nivoo = Number(prompt("Saisi Le Niveau Minimal: "));
+      let resultatsFiltrer = filtrerParNiveau(nivoo);
+      for (let item of resultatsFiltrer) {
+        let score = calculerProgression(item.id);
+        console.log(
+          `ID: ${item.id} | Nom: ${item.nomComplet} | Progression: ${score}%`,
+        );
+      }
+  
       break;
     case "0":
       console.log("Fermeture de l'application. Au revoir !");
